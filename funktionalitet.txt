@@ -1,0 +1,1 @@
+Vi skal have en ting der holder styr hvilken round man er i så man ikke kan aktivere en tidligere valgt terning og den skal også holde styr på om man kan starte næste runde ved at tjekke om man har aktiveret nogle terninger der giver point
