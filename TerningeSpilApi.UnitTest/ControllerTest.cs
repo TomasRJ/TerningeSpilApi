@@ -17,5 +17,13 @@ namespace TerningeSpilApi.UnitTest
         {
             _controller.GetDice().Count.Should().Be(6);
         }
+        [Fact]
+        public void ToggleDieTest()
+        {
+            int id = 1;
+            var die = new Die{ Id = id, IsActive = true, Value = 5 };
+            _controller.ToggleDie(id, new List<Die> { die });
+            die.IsActive.Should().BeFalse();
+        }
     }
 }

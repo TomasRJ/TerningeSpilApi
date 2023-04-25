@@ -12,12 +12,19 @@ namespace TerningeSpilApi.Controllers
         {
             Random random = new Random();
             List<Die> dice = new List<Die>();
-            for (int i = 1; i <= 6; i++)
-                dice.Add(new Die() { Id = i, Value = random.Next(7) });
+            for (int i = 0; i < 6; i++)
+                dice.Add(new Die() { Id = i, Value = random.Next(1,7) });
 
             return dice;
         }
 
-
+        public void ToggleDie(int id, List<Die> dice)
+        {
+            var die = dice.FirstOrDefault(d => d.Id == id);
+            if (die.IsActive)
+                die.IsActive = false;
+            else
+                die.IsActive = true;
+        }
     }
 }
