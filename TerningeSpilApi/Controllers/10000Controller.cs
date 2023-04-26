@@ -8,26 +8,34 @@ namespace TerningeSpilApi.Controllers
     public class _10000Controller : ControllerBase
     {
         public List<Die>? DiceOnTheBoard { get; set; }
+        public int Round { get; set; }
 
         [HttpGet(Name = "Round")]
         public void GetDice()
         {
             var random = new Random();
             var dice = new List<Die>();
-            dice.AddRange(Enumerable.Range(0,5).Select(id => new Die { Id = id, Value = random.Next(1, 7)}));
-
-            DiceOnTheBoard = dice;
+            
+            if (Round == 0)
+            {
+                dice.AddRange(Enumerable.Range(0, 6).Select(id => new Die { Id = id, Value = random.Next(1, 7), Round = 1 }));
+                Round = 1;
+                DiceOnTheBoard = dice;
+            }            
+            
+            // Sets next round
+            if (DiceOnTheBoard.Any(d => d.IsActive == false))
+            {
+                Round++;
+                DiceOnTheBoard.Where(d => d.IsActive).ToList().ForEach(d => d.Round++);
+            }
         }
 
-        public void ToggleDie(int id)
+        [HttpGet(Name = "ToggleDie")]
+        public void ToggleDie(int id, int round)
         {
-            var die = DiceOnTheBoard.FirstOrDefault(d => d.Id == id);
+            var die = DiceOnTheBoard.FirstOrDefault(d => d.Id == id & d.Round == round);
             die.IsActive = !die.IsActive;
-        }
-
-        public void GetValue()
-        {
-            var list = DiceOnTheBoard.Where(d => d.IsActive is false).ToList();
         }
     }
 }
