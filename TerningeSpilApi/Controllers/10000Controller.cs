@@ -14,8 +14,8 @@ namespace TerningeSpilApi.Controllers
         {
             var random = new Random();
             var dice = new List<Die>();
-            for (int i = 0; i < 6; i++)
-                dice.Add(new Die { Id = i, Value = random.Next(1,7) });
+            dice.AddRange(Enumerable.Range(0,5).Select(id => new Die { Id = id, Value = random.Next(1, 7)}));
+
             DiceOnTheBoard = dice;
         }
 
