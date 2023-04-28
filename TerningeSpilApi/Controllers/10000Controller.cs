@@ -25,9 +25,9 @@ namespace TerningeSpilApi.Controllers
             
             // Sets next round
             if (DiceOnTheBoard.Any(d => d.IsActive == false))
-            {
+            {                
+                DiceOnTheBoard.Where(d => d.IsActive && d.Round == Round).ToList().ForEach(d => d.Round++);
                 Round++;
-                DiceOnTheBoard.Where(d => d.IsActive).ToList().ForEach(d => d.Round++);
             }
         }
 

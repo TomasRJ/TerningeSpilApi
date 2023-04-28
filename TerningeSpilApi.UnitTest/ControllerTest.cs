@@ -47,7 +47,7 @@ namespace TerningeSpilApi.UnitTest
                 .Should()
                 .OnlyContain(d => d.Round == _controller.Round);
 
-            // Assert that the incorrect die is not on round 2
+            // Assert that the selected die is not on round 2
             selectedDie.Round.Should().NotBe(_controller.Round);
 
             // Trying to toggle a previous toggled die should throw a NullReferenceException
