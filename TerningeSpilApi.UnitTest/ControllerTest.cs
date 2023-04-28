@@ -21,13 +21,13 @@ namespace TerningeSpilApi.UnitTest
             _controller.GetDice();
 
             // Now selecting die nr 1
-            var id = 1;            
+            var id = 1;
             var die = _controller.DiceOnTheBoard.FirstOrDefault(d => d.Id == id);
             var round = _controller.Round;
             _controller.ToggleDie(id, round);
             die.IsActive.Should().BeFalse();
         }
-        
+
         // Test for that a toggled die in a previous round is not toggable in the current round
         [Fact]
         public void NextRoundTest()
@@ -54,5 +54,7 @@ namespace TerningeSpilApi.UnitTest
             var tryTogglePreviousDie = () => _controller.ToggleDie(id, _controller.Round);
             tryTogglePreviousDie.Should().Throw<NullReferenceException>();
         }
+   
     }
+
 }

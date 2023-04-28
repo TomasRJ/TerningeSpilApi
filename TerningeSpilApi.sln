@@ -5,12 +5,14 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerningeSpilApi", "TerningeSpilApi\TerningeSpilApi.csproj", "{BB26F6E9-16E1-4C56-8CE0-DB9F91B4633B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerningeSpilApi.UnitTest", "TerningeSpilApi.UnitTest\TerningeSpilApi.UnitTest.csproj", "{AD6B8D67-EC8E-4612-9674-D416A17CEFD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerningeSpilApi.UnitTest", "TerningeSpilApi.UnitTest\TerningeSpilApi.UnitTest.csproj", "{AD6B8D67-EC8E-4612-9674-D416A17CEFD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7037D319-DA63-43DA-B3D7-2FA2575AE889}"
 	ProjectSection(SolutionItems) = preProject
 		funktionalitet.txt = funktionalitet.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlowTest", "SpecFlowTest\SpecFlowTest.csproj", "{FE395AAF-F8D8-4F68-B458-C442839D3BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{AD6B8D67-EC8E-4612-9674-D416A17CEFD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD6B8D67-EC8E-4612-9674-D416A17CEFD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD6B8D67-EC8E-4612-9674-D416A17CEFD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE395AAF-F8D8-4F68-B458-C442839D3BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE395AAF-F8D8-4F68-B458-C442839D3BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE395AAF-F8D8-4F68-B458-C442839D3BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE395AAF-F8D8-4F68-B458-C442839D3BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
