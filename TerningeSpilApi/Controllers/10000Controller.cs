@@ -37,5 +37,20 @@ namespace TerningeSpilApi.Controllers
             var die = DiceOnTheBoard.FirstOrDefault(d => d.Id == id & d.Round == round);
             die.IsActive = !die.IsActive;
         }
+
+        public int? CalculatePoints(IGrouping<int, Die>? equalDice)
+        {
+            if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is not 1)
+            {
+                return equalDice.Select(d => d.Value).FirstOrDefault() * 2;
+            }
+
+            if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is 1)
+            {
+                return 1000;
+            }
+
+            return null;
+        }
     }
 }
