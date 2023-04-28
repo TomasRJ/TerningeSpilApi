@@ -42,7 +42,7 @@ namespace TerningeSpilApi.Controllers
         {
             if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is not 1)
             {
-                return equalDice.Select(d => d.Value).FirstOrDefault() * 2;
+                return equalDice.Select(d => d.Value).FirstOrDefault() * 100;
             }
 
             if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is 1)
