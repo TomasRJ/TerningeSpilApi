@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TerningeSpilApi.Model;
 
 namespace TerningeSpilApi.Controllers
 {
@@ -36,6 +37,21 @@ namespace TerningeSpilApi.Controllers
         {
             var die = DiceOnTheBoard.FirstOrDefault(d => d.Id == id & d.Round == round);
             die.IsActive = !die.IsActive;
+        }
+
+        public int? CalculatePoints(IGrouping<int, Die>? equalDice)
+        {
+            if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is not 1)
+            {
+                return equalDice.Select(d => d.Value).FirstOrDefault() * 100;
+            }
+
+            if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is 1)
+            {
+                return 1000;
+            }
+
+            return null;
         }
     }
 }

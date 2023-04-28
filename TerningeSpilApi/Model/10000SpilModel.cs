@@ -1,4 +1,4 @@
-﻿namespace TerningeSpilApi
+﻿namespace TerningeSpilApi.Model
 {
     public class Die
     {

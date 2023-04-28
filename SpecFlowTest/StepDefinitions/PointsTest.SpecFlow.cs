@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TerningeSpilApi;
-
+using TerningeSpilApi.Controllers;
+using TerningeSpilApi.Model;
 
 namespace SpecFlowTest.StepDefinitions
 
@@ -16,8 +16,8 @@ namespace SpecFlowTest.StepDefinitions
     public sealed class PointsTest
 
     {
+        private _10000Controller _controller = new();
         private List<Die> _dice = new List<Die>();
-
         private IGrouping<int, Die>? _equalDice;
 
         [Given(@"list of dice with value (.*),(.*),(.*),(.*),(.*),(.*)")]
@@ -39,19 +39,10 @@ namespace SpecFlowTest.StepDefinitions
             _equalDice = _dice.GroupBy(d => d.Value).Where(g => g.Count() == 3).FirstOrDefault();
         }
 
-        [Then(@"the points earned should be the dice value multiplied by (.*)")]
-
-        public void CalculatePoints(int multiply)
+        [Then(@"the points earned should be (.*)")]
+        public void CalculatePoints(int expected)
         {
-            int points;
-            if (_equalDice is not null && _equalDice.Select(d => d.Value).FirstOrDefault() is not 1)
-            {
-                points = _equalDice.Select(d => d.Value).FirstOrDefault() * multiply;
-            }
-            else if (_equalDice is not null && _equalDice.Select(d => d.Value).FirstOrDefault() is 1)
-            {
-                points = 1000;
-            }
+            _controller.CalculatePoints(_equalDice).Should().Be(expected);
         }
     }
 }
