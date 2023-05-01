@@ -43,7 +43,7 @@ namespace TerningeSpilApi.Controllers
         public void FindSet(List<Die> dice)
         {
             if (dice.GroupBy(d => d.Value).Any(g => g.Count() >= 3))
-                dice.GroupBy(d => d.Value).ToList().ForEach(d => CalculatePoints(d));
+                dice.GroupBy(d => d.Value).Where(g => g.Count() >= 3).ToList().ForEach(d => CalculatePoints(d));
         }
 
         public int CalculatePoints(IGrouping<int, Die> dice)
