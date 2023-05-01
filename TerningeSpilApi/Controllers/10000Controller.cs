@@ -39,19 +39,13 @@ namespace TerningeSpilApi.Controllers
             die.IsActive = !die.IsActive;
         }
 
-        public int? CalculatePoints(IGrouping<int, Die>? equalDice)
+        public int CalculatePoints(IGrouping<int, Die> dice)
         {
-            if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is not 1)
-            {
-                return equalDice.Select(d => d.Value).FirstOrDefault() * 100;
-            }
-
-            if (equalDice is not null && equalDice.Select(d => d.Value).FirstOrDefault() is 1)
-            {
+            var preCalc = dice.Select(d => d.Value).FirstOrDefault();
+            if (preCalc == 1) 
                 return 1000;
-            }
-
-            return null;
+            else 
+                return preCalc * 100;
         }
     }
 }
