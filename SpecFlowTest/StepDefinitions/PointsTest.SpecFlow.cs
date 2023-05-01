@@ -30,13 +30,13 @@ namespace SpecFlowTest.StepDefinitions
         public void CheckThreeEqualDice()
         {
             if (_dice is not null)
-                _equalDice = _dice.GroupBy(d => d.Value).Where(g => g.Count() == 3).FirstOrDefault();
+                _controller.FindSet(_dice);
         }
 
         [Then("the points earned should be (.*)")]
         public void CalculatePoints(int expectedValue)
         {
-            _controller.CalculatePoints(_equalDice).Should().Be(expectedValue);
+            _controller.CurrentScore.Should().Be(expectedValue);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace TerningeSpilApi.Controllers
     {
         public List<Die>? DiceOnTheBoard { get; set; }
         public int Round { get; set; }
+        public int CurrentScore { get; set; } = 0;
 
         [HttpGet(Name = "Round")]
         public void GetDice()
@@ -39,13 +40,48 @@ namespace TerningeSpilApi.Controllers
             die.IsActive = !die.IsActive;
         }
 
+        public void FindSet(List<Die> dice)
+        {
+            if (dice.GroupBy(d => d.Value).Any(g => g.Count() >= 3))
+                dice.GroupBy(d => d.Value).ToList().ForEach(d => CalculatePoints(d));
+        }
+
         public int CalculatePoints(IGrouping<int, Die> dice)
         {
-            var preCalc = dice.Select(d => d.Value).FirstOrDefault();
-            if (preCalc == 1) 
-                return 1000;
-            else 
-                return preCalc * 100;
+            int diceValue = dice.Select(d => d.Value).FirstOrDefault();
+            int roundValue = 0;
+            if (dice.Count() == 3) 
+            {
+                if (diceValue == 1)
+                    roundValue = 1000;
+                else
+                    roundValue = diceValue * 100;
+            }
+            else if (dice.Count() == 4)
+            {
+                if (diceValue == 1)
+                    roundValue = 2000;
+                else
+                    roundValue = diceValue * 100 * 2;
+            }
+            else if (dice.Count() == 5)
+            {
+                if (diceValue == 1)
+                    roundValue = 4000;
+                else
+                    roundValue = diceValue * 100 * 4;
+            }
+            else if (dice.Count() == 6)
+            {
+                if (diceValue == 1)
+                    roundValue = 10000;
+                else
+                    roundValue = diceValue * 100 * 8;
+            }
+
+            CurrentScore += roundValue;
+
+            return CurrentScore;
         }
     }
 }
