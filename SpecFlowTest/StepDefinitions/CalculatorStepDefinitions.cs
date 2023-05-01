@@ -5,7 +5,7 @@ namespace SpecFlowTest.StepDefinitions
     {
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
-        [Given("list of dice '(.*)'")]
+        [Given("bla bla'(.*)'")]
         public void GivenTheFirstNumberIs(int number)
         {
             //TODO: implement arrange (precondition) logic
